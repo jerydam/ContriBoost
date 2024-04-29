@@ -30,6 +30,7 @@ const DeployedSystems = ({ createdByUser, joined }: DeployedSystemsProps) => {
             <ParticularSystem
               address={systemAddress}
               index={index}
+              joined={false}
             ></ParticularSystem>
           </div>
         );
