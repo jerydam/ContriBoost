@@ -19,11 +19,17 @@ const ParticularSystem = ({
   joined,
 }: ParticularSystemProps) => {
   const //
-    //a
+    //
     contributionAmount = useReadContract({
       abi: Contribution_SystemABI,
       address: address,
       functionName: "contributionAmount",
+      args: [],
+    }),
+    name = useReadContract({
+      abi: Contribution_SystemABI,
+      address: address,
+      functionName: "name",
       args: [],
     }),
     currentSegment = useReadContract({
@@ -80,21 +86,21 @@ const ParticularSystem = ({
   //
 
   return (
-    <div className="border-2 p-2 m-2 relative">
-      <div>
+    <div className="border-2 w-96 p-2 m-2 relative">
+      <div className="">
+        <div className="bg-gray-600 p-2">{name.data?.toLocaleUpperCase()}</div>
         <div>contributionAmount: {Number(contributionAmount.data)}</div>
         <div>currentSegment: {Number(currentSegment.data)}</div>
         <div>dayRange: {Number(dayRange.data)}</div>
         <div>expectedNumber: {Number(expectedNumber.data)}</div>
-        <div>host: {host.data}</div>
         <div className="flex items-center *:m-2">
           getAllParticipants:{" "}
-          <div className="flex flex-wrap" key={"cr"}>
+          <div className="flex flex-wrap " key={"cr"}>
             {getAllParticipants.data?.map((participant, index) => {
               return (
                 <div className="mx-2 p-1 border-2" key={index}>
                   {participant.replace(
-                    participant.slice(4, participant.length - 4),
+                    participant.slice(3, participant.length - 2),
                     "..."
                   )}
                 </div>

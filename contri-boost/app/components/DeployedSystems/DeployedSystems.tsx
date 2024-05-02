@@ -23,7 +23,7 @@ const DeployedSystems = ({ createdByUser, joined }: DeployedSystemsProps) => {
   //
 
   return (
-    <>
+    <div className="flex flex-wrap items-center justify-center">
       {data?.map((systemAddress, index) => {
         return (
           <div key={index}>
@@ -35,7 +35,7 @@ const DeployedSystems = ({ createdByUser, joined }: DeployedSystemsProps) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
