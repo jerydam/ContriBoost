@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " " + "bg-gray-600 overflow-hidden"}>
+      <body className={inter.className + " " + "bg-gray-50 overflow-hidden"}>
         <Providers>
           {/* sideBar */}
           <section className="flex h-screen">
@@ -29,7 +29,7 @@ export default function RootLayout({
               <SideBar />
             </div>
             <div className="w-full">
-              <div className="h-16 bg-gray-900 relative flex items-center">
+              <div className="h-16 bg-gray-300 relative flex items-center">
                 <ConnectWallet />
               </div>
               <div className="w-full  h-full overflow-y-auto mt-4  p-4">
