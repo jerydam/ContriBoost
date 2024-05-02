@@ -24,7 +24,7 @@ const Joined = () => {
       {status == "connected" ? (
         <div className="flex flex-col justify-center items-center">
           {getDeployedSystems.data?.map((system, index) => {
-            return <ReturnParticipant systems={system} />;
+            return <ReturnParticipant key={index} systems={system} />;
           })}
         </div>
       ) : (
@@ -53,7 +53,7 @@ const ReturnParticipant = ({ systems }: ReturnParticipantProps) => {
     <div>
       {data?.map((participant, index) => {
         return (
-          <div>
+          <div key={participant}>
             {participant == address ? (
               <div>
                 <ParticularSystem

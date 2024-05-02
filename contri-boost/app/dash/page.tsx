@@ -7,13 +7,13 @@ import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const //
-    { push } = useRouter(),
+    router = useRouter(),
     { status } = useAccount();
   //
   useEffect(() => {
     status == "disconnected"
       ? setTimeout(() => {
-          push("/");
+          router.push("/");
         }, 500)
       : null;
   }, [status]);

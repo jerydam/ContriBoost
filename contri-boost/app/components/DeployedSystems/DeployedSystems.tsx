@@ -1,7 +1,7 @@
 "use client";
 
 import { factoryABI, factoryAddress } from "@/app/utils/contractAddresses&ABIs";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useReadContract } from "wagmi";
 import ParticularSystem from "./components/particularSystem";
 

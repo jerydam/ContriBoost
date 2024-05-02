@@ -56,7 +56,7 @@ const ParticularSystem = ({
       functionName: "getAllParticipants",
     }),
     //
-    { refresh } = useRouter(),
+    router = useRouter(),
     //
     { writeContractAsync, failureReason, status } = useWriteContract();
 
@@ -67,7 +67,7 @@ const ParticularSystem = ({
   useEffect(() => {
     status == "success"
       ? setTimeout(() => {
-          refresh();
+          router.refresh();
         }, 2000)
       : null;
   }, [status]);
