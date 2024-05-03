@@ -1,34 +1,13 @@
 "use client";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useRouter } from "next/navigation";
+import { MenuIcon } from "lucide-react";
 import React, { useEffect } from "react";
 import { useAccount } from "wagmi";
 
 const ConnectWallet = () => {
-  const //
-    { status } = useAccount(),
-    { push } = useRouter();
-  //
-  //
-  // useEffect(() => {
-  //   status == "disconnected"
-  //     ? setTimeout(() => {
-  //         push("/");
-  //       }, 500)
-  //     : null;
-  // }, [status]);
-
-  // //
-  // useEffect(() => {
-  //   status == "connected"
-  //     ? window.location.href.slice(window.location.href.lastIndexOf("/")) == "/"
-  //       ? push("/dash")
-  //       : null
-  //     : null;
-  // }, [status]);
   return (
-    <div className="absolute right-6">
+    <div className="absolute right-6 flex items-center">
       <ConnectButton
         accountStatus={{
           smallScreen: "avatar",
@@ -40,6 +19,19 @@ const ConnectWallet = () => {
           largeScreen: true,
         }}
       />
+      <div
+        className="ml-2 inline-block md:hidden "
+        onMouseOver={() => {
+          // absolute -left-full
+          const sidebar = document.getElementById("sidebar");
+          // @ts-ignore
+          sidebar.style.position = "absolute";
+          // @ts-ignore
+          sidebar.style.left = "0";
+        }}
+      >
+        <MenuIcon />
+      </div>
     </div>
   );
 };

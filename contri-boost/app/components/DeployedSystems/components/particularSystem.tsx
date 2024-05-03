@@ -10,14 +10,9 @@ import {
 interface ParticularSystemProps {
   address: `0x${string}`;
   index: number;
-  joined: boolean;
 }
 
-const ParticularSystem = ({
-  address,
-  index,
-  joined,
-}: ParticularSystemProps) => {
+const ParticularSystem = ({ address, index }: ParticularSystemProps) => {
   const //
     //
     contributionAmount = useReadContract({
@@ -86,7 +81,7 @@ const ParticularSystem = ({
   //
 
   return (
-    <div className="border-2 w-96 p-2 m-2 relative">
+    <div className=" ">
       <div className="">
         <div className="bg-blue-400 p-2">{name.data?.toLocaleUpperCase()}</div>
         <div>contributionAmount: {Number(contributionAmount.data)}</div>
@@ -108,30 +103,6 @@ const ParticularSystem = ({
             })}
           </div>
         </div>
-      </div>
-      <div className="">
-        {joined ? (
-          <button
-            className="bg-blue-500 px-3 absolute right-0 bottom-0 cursor-pointer transition-all active:scale-90 active:absolute active:bottom-0 active:right-0"
-            onClick={() => {}}
-          >
-            Contribute
-          </button>
-        ) : (
-          <button
-            className="bg-green-500 px-3 absolute right-0 bottom-0 cursor-pointer transition-all active:scale-90 active:absolute active:bottom-0 active:right-0"
-            onClick={() => {
-              writeContractAsync({
-                abi: Contribution_SystemABI,
-                address: address,
-                functionName: "join",
-                args: [],
-              });
-            }}
-          >
-            join
-          </button>
-        )}
       </div>
     </div>
   );

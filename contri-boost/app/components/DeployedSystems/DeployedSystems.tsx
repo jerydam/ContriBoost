@@ -27,11 +27,7 @@ const DeployedSystems = ({ createdByUser, joined }: DeployedSystemsProps) => {
       {data?.map((systemAddress, index) => {
         return (
           <div key={index}>
-            <ParticularSystem
-              address={systemAddress}
-              index={index}
-              joined={false}
-            ></ParticularSystem>
+            <ParticularSystem address={systemAddress} index={index} />
           </div>
         );
       })}

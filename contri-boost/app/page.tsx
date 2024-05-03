@@ -13,9 +13,9 @@ const Home = () => {
     status == "connected" ? push("/dash") : null;
   }, [status]);
   return (
-    <div className="">
+    <div className="flex justify-center">
       {/* mainContent */}
-      <section className="p-4 flex flex-wrap items-center justify-center w-full text-justify">
+      <section className="p-4 lg:w-3/5 w-11/12 flex items-center justify-center text-justify">
         Contriboost: A Simple Guide Welcome! Welcome to the Contriboost! This
         system is a digital Contribution system where everyone Come together to
         contribute something valuable to share. Let me guide you through how it

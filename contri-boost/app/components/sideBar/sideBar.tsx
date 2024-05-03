@@ -1,11 +1,12 @@
 "use client";
 
+import { CrossIcon, CrosshairIcon, SidebarClose } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useAccount } from "wagmi";
-
+SidebarClose;
 const paths = [
   {
     name: "Create Contribution System",
@@ -30,25 +31,26 @@ const SideBar = () => {
     { status } = useAccount(),
     { push } = useRouter();
   return (
-    <div className="w-60 shadow-2xl h-full ">
+    <div
+      id="sidebar"
+      className=" absolute transition-all w-96 shadow-2xl h-screen -left-full md:relative md:left-0 z-40"
+    >
       {/* Header */}
-      <Link
-        className="h-16 flex items-center pl-6 bg-gray-300"
-        href={"/"}
-        onClick={(event) => {
-          event.stopPropagation();
-          event.preventDefault();
-          status == "disconnected" ? push("/") : push("/dash");
-        }}
-      >
-        <Image
-          src={"/img/LOGO.png"}
-          alt={"logo"}
-          width={150}
-          height={500}
-          className=" transition-all active:scale-95 "
-        />
-      </Link>
+      <div className="absolute left-0 top-0 h-screen w-full backdrop-blur-md  -z-10 "></div>
+      <div className="relative">
+        <div
+          className="ml-4 absolute right-0 text-gray-500 inline-block md:hidden"
+          onMouseUp={() => {
+            const sidebar = document.getElementById("sidebar");
+            // @ts-ignore
+            sidebar.style.position = "absolute";
+            // @ts-ignore
+            sidebar.style.left = "-100%";
+          }}
+        >
+          <SidebarClose />
+        </div>
+      </div>
       {/*  navs*/}
       <nav className="p-4 flex flex-col">
         {paths.map((path, index) => {

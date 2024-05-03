@@ -89,7 +89,7 @@ const Create = () => {
                 });
               }
             }}
-            className="bg-green-600 w-56 p-4 m-1"
+            className="bg-green-600 w-56 active:scale-90 p-4 m-1"
           >
             Create Contribution System
           </button>

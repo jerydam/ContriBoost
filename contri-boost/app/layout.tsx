@@ -6,7 +6,6 @@ const inter = Inter({ subsets: ["latin"] });
 import { Providers } from "./providers";
 import SideBar from "./components/sideBar/sideBar";
 import Header from "./components/Header";
-import ConnectWallet from "./components/connectWallet";
 
 export const metadata: Metadata = {
   title: "ContriBoost",
@@ -24,20 +23,16 @@ export default function RootLayout({
       <body className={inter.className + " " + "bg-gray-50 overflow-hidden"}>
         <Providers>
           {/* sideBar */}
-          <section className="flex h-screen">
-            <div className="">
+          <div className="flex flex-col h-screen">
+            <Header />
+            <div className="w-full flex">
               <SideBar />
-            </div>
-            <div className="w-full">
-              <div className="h-16 bg-gray-300 relative flex items-center">
-                <ConnectWallet />
-              </div>
-              <div className="w-full  h-full overflow-y-auto mt-4  p-4">
+              <div className="w-full  overflow-y-scroll h-screen mt-4  p-4">
                 {children}
-                <div className="h-36"></div>
+                <div className="h-56"></div>
               </div>
             </div>
-          </section>
+          </div>
         </Providers>
       </body>
     </html>

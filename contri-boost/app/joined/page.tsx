@@ -10,8 +10,9 @@ import {
   factoryAddress,
 } from "../utils/contractAddresses&ABIs";
 import ParticularSystem from "../components/DeployedSystems/components/particularSystem";
+import Joined from "../components/Joined";
 
-const Joined = () => {
+const Join = () => {
   const //
     { status } = useAccount(),
     getDeployedSystems = useReadContract({
@@ -22,7 +23,7 @@ const Joined = () => {
   return (
     <>
       {status == "connected" ? (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-wrap justify-center items-center">
           {getDeployedSystems.data?.map((system, index) => {
             return <ReturnParticipant key={index} systems={system} />;
           })}
@@ -50,17 +51,14 @@ const ReturnParticipant = ({ systems }: ReturnParticipantProps) => {
       functionName: "getAllParticipants",
     });
   return (
-    <div>
+    <div className="border-2 m-2">
       {data?.map((participant, index) => {
         return (
           <div key={participant}>
             {participant == address ? (
               <div>
-                <ParticularSystem
-                  address={systems}
-                  index={index}
-                  joined={participant == address}
-                />
+                <ParticularSystem address={systems} index={index} />
+                <Joined abi={Contribution_SystemABI} sysAddress={systems} />
               </div>
             ) : null}
           </div>
@@ -70,4 +68,4 @@ const ReturnParticipant = ({ systems }: ReturnParticipantProps) => {
   );
 };
 
-export default Joined;
+export default Join;
