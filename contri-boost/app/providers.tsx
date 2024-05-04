@@ -4,30 +4,27 @@ import "@rainbow-me/rainbowkit/styles.css";
 import * as React from "react";
 import {
   RainbowKitProvider,
-  getDefaultWallets,
   getDefaultConfig,
   lightTheme,
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import {
-  okxWallet,
   metaMaskWallet,
+  okxWallet,
+  bitgetWallet,
   trustWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 import { scroll, scrollTestnet, scrollSepolia, sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 
-const { wallets } = getDefaultWallets();
-
 const config = getDefaultConfig({
   appName: "cuberhack",
   projectId: "43729b23db241dc0e811f7cbe2318b3b",
   wallets: [
-    ...wallets,
     {
-      groupName: "Other",
-      wallets: [okxWallet, trustWallet, metaMaskWallet],
+      groupName: "Choose Wallet",
+      wallets: [metaMaskWallet, bitgetWallet, okxWallet, trustWallet],
     },
   ],
   chains: [

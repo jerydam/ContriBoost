@@ -93,6 +93,7 @@ const Create = () => {
           >
             Create Contribution System
           </button>
+          <div className="m-5 bg-red-300 p-4">modal</div>
         </div>
       ) : (
         <div className=" w-full h-full flex items-center justify-center">
