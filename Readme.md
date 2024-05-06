@@ -25,5 +25,7 @@ Imagine you're organizing a community event, and you need everyone to pitch in a
 
 ## Conclusion
 The Contribution System is a simple yet powerful way for communities to come together, contribute, and achieve common goals. So, come join us, pitch in, and let's make something awesome together!
-https://sepolia.scrollscan.com/address/0xf4d773a3f6c4042a1f2005d0784c2437796201a4
-https://sepolia.scrollscan.com/address/0x7e10bb15778f5558bf4dbd1701acefd56443e1a4
+
+## Contract Adresses
+[Contribution System](https://sepolia.scrollscan.com/address/0x7370f36b7ef398b9c5e840c768fa1794ea7cbc37)
+[Factory System](https://sepolia.scrollscan.com/address/0x7d1c7778facdf9b43cbbb34a862f1a99961f3c06)
