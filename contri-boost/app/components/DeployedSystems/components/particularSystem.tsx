@@ -2,18 +2,21 @@ import { Contribution_SystemABI } from "@/app/utils/contractAddresses&ABIs";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import {
+  useAccount,
+  useBalance,
   useReadContract,
   useWatchContractEvent,
   useWriteContract,
 } from "wagmi";
 
 interface ParticularSystemProps {
-  address: `0x${string}`;
+  address: `0x${string}` | undefined;
   index: number;
 }
 
 const ParticularSystem = ({ address, index }: ParticularSystemProps) => {
   const //
+    user = useAccount(),
     //
     contributionAmount = useReadContract({
       abi: Contribution_SystemABI,
@@ -45,11 +48,8 @@ const ParticularSystem = ({ address, index }: ParticularSystemProps) => {
       functionName: "expectedNumber",
       args: [],
     }),
-    host = useReadContract({
-      abi: Contribution_SystemABI,
+    balance = useBalance({
       address: address,
-      functionName: "host",
-      args: [],
     }),
     getAllParticipants = useReadContract({
       abi: Contribution_SystemABI,
@@ -72,6 +72,7 @@ const ParticularSystem = ({ address, index }: ParticularSystemProps) => {
         }, 2000)
       : null;
   }, [status]);
+
   //
   /* useWatchContractEvent({
     abi: Contribution_SystemABI,
@@ -83,8 +84,12 @@ const ParticularSystem = ({ address, index }: ParticularSystemProps) => {
   return (
     <div className=" ">
       <div className="">
-        <div className="bg-blue-400 p-2">{name.data?.toLocaleUpperCase()}</div>
-        <div>contributionAmount: {Number(contributionAmount.data)}</div>
+        <div className="bg-gray-300 p-2 text-center">
+          {name.data?.toLocaleUpperCase()}
+        </div>
+        <div>
+          contributionAmount: {Number(contributionAmount.data) / 1e18} ETH
+        </div>
         <div>currentSegment: {Number(currentSegment.data)}</div>
         <div>dayRange: {Number(dayRange.data)}</div>
         <div>expectedNumber: {Number(expectedNumber.data)}</div>
@@ -102,6 +107,9 @@ const ParticularSystem = ({ address, index }: ParticularSystemProps) => {
               );
             })}
           </div>
+        </div>
+        <div>
+          Total Contribution: <b>{balance.data?.formatted} ETH</b>
         </div>
       </div>
     </div>

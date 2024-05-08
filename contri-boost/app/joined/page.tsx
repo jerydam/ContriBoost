@@ -58,7 +58,7 @@ const ReturnParticipant = ({ systems }: ReturnParticipantProps) => {
             {participant == address ? (
               <div>
                 <ParticularSystem address={systems} index={index} />
-                <Joined abi={Contribution_SystemABI} sysAddress={systems} />
+                <Joined sysAddress={systems} />
               </div>
             ) : null}
           </div>

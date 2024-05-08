@@ -38,25 +38,23 @@ const Dashboard = () => {
   }, [status]);
 
   return (
-    <div className="w-fit">
+    <div className="w-full">
       <div> Total of {data?.length} Systems</div>
-      <div className="flex flex-wrap  justify-center items-center">
-        {data?.map((systemAddress, index) => {
-          return (
-            <>
-              <div className="relative border-2 w-96 p-2 m-2">
-                <ParticularSystem address={systemAddress} index={index} />
-
-                <div className="">
-                  <Joined
-                    abi={Contribution_SystemABI}
-                    sysAddress={systemAddress}
-                  />
+      <div className=" flex flex-wrap  justify-center items-center">
+        <div>
+          {data?.toReversed().map((systemAddress, index) => {
+            return (
+              <>
+                <div className="relative border-2 w-96 p-2 m-2">
+                  <ParticularSystem address={systemAddress} index={index} />
+                  <div className="">
+                    <Joined sysAddress={systemAddress} />
+                  </div>
                 </div>
-              </div>
-            </>
-          );
-        })}
+              </>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

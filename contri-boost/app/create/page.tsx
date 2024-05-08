@@ -19,7 +19,7 @@ const Create = () => {
   useWatchContractEvent({
     address: factoryAddress,
     abi: factoryABI,
-    eventName: "Contribution_SystemCreated",
+    eventName: "ContributionSystemCreated",
     onLogs(logs) {
       console.log("System created", logs);
       alert("System created");
@@ -31,45 +31,58 @@ const Create = () => {
       {account.status == "connected" ? (
         <div className="flex flex-col items-center justify-center  w-full ">
           Allows creating a new instance of the ContributionSystem contract
-          <form action="" className="*:p-4 *:m-1 *:text-black">
-            <input
-              required
-              min={1}
-              type="number"
-              placeholder="Day Range"
-              onChange={(event) => {
-                set_dayRange(Number(event.currentTarget.value));
-              }}
-            />
+          <form
+            action=""
+            className="*:*:p-4 *:*:m-1 *:*:text-black flex flex-col"
+          >
+            <div>
+              <input
+                required
+                min={1}
+                type="number"
+                placeholder="Day Range"
+                onChange={(event) => {
+                  set_dayRange(Number(event.currentTarget.value));
+                }}
+              />
+              Days
+            </div>
 
-            <input
-              required
-              min={1}
-              type="number"
-              placeholder="Expected Number of Participants"
-              onChange={(event) => {
-                set_expectedNumber(Number(event.currentTarget.value));
-              }}
-            />
-
-            <input
-              required
-              min={1}
-              type="number"
-              placeholder="Contribution Amount"
-              onChange={(event) => {
-                set_contributionAmount(Number(event.currentTarget.value));
-              }}
-            />
-
-            <input
-              required
-              type="text"
-              placeholder="Name of Contribution system"
-              onChange={(event) => {
-                set_name(event.currentTarget.value);
-              }}
-            />
+            <div>
+              <input
+                required
+                min={1}
+                type="number"
+                placeholder="Expected Number of Participants"
+                onChange={(event) => {
+                  set_expectedNumber(Number(event.currentTarget.value));
+                }}
+              />
+              People
+            </div>
+            <div>
+              <input
+                required
+                min={1}
+                type="number"
+                placeholder="Contribution Amount"
+                onChange={(event) => {
+                  set_contributionAmount(Number(event.currentTarget.value));
+                }}
+              />
+              ETH
+            </div>
+            <div>
+              <input
+                required
+                type="text"
+                placeholder="Name of Contribution system"
+                onChange={(event) => {
+                  set_name(event.currentTarget.value);
+                }}
+              />
+              NCS
+            </div>
           </form>
           <button
             type="submit"
@@ -82,8 +95,7 @@ const Create = () => {
                   args: [
                     BigInt(_dayRange),
                     BigInt(_expectedNumber),
-                    BigInt(_contributionAmount),
-                    "0xA92CBB9380f9311D876477Fa78Ad1e00f61A858f" as `0x${string}`,
+                    BigInt(_contributionAmount * 1e18),
                     _name,
                   ],
                 });
@@ -93,7 +105,7 @@ const Create = () => {
           >
             Create Contribution System
           </button>
-          <div className="m-5 bg-red-300 p-4">modal</div>
+          {/* <div className="m-5 bg-red-300 p-4">modal</div> */}
         </div>
       ) : (
         <div className=" w-full h-full flex items-center justify-center">

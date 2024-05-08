@@ -1,4 +1,4 @@
-export const factoryAddress = "0x90A77A567C4Ebc6C1fEf3DcBdc61Ff94F1a16eA2";
+export const factoryAddress = "0x7D1c7778fACdf9B43cBBB34A862F1A99961F3c06";
 
 export const factoryABI = [
   {
@@ -17,7 +17,7 @@ export const factoryABI = [
         type: "address",
       },
     ],
-    name: "Contribution_SystemCreated",
+    name: "ContributionSystemCreated",
     type: "event",
   },
   {
@@ -25,7 +25,6 @@ export const factoryABI = [
       { internalType: "uint256", name: "_dayRange", type: "uint256" },
       { internalType: "uint256", name: "_expectedNumber", type: "uint256" },
       { internalType: "uint256", name: "_contributionAmount", type: "uint256" },
-      { internalType: "address", name: "_tokenAddress", type: "address" },
       { internalType: "string", name: "_name", type: "string" },
     ],
     name: "createContribution_System",
@@ -51,8 +50,43 @@ export const factoryABI = [
   },
   {
     inputs: [],
+    name: "getDeployedSystemOfSender",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
     name: "getDeployedSystems",
     outputs: [{ internalType: "address[]", name: "", type: "address[]" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "_systemAddress", type: "address" },
+    ],
+    name: "getSystemDetails",
+    outputs: [
+      {
+        components: [
+          { internalType: "address", name: "systemAddress", type: "address" },
+          { internalType: "address", name: "creator", type: "address" },
+          { internalType: "string", name: "name", type: "string" },
+          { internalType: "uint256", name: "dayRange", type: "uint256" },
+          { internalType: "uint256", name: "expectedNumber", type: "uint256" },
+          {
+            internalType: "uint256",
+            name: "contributionAmount",
+            type: "uint256",
+          },
+          { internalType: "address", name: "tokenAddress", type: "address" },
+        ],
+        internalType: "struct Factory.SystemInfo",
+        name: "",
+        type: "tuple",
+      },
+    ],
     stateMutability: "view",
     type: "function",
   },
@@ -64,12 +98,28 @@ export const factoryABI = [
         components: [
           { internalType: "address", name: "systemAddress", type: "address" },
           { internalType: "address", name: "creator", type: "address" },
+          { internalType: "string", name: "name", type: "string" },
+          { internalType: "uint256", name: "dayRange", type: "uint256" },
+          { internalType: "uint256", name: "expectedNumber", type: "uint256" },
+          {
+            internalType: "uint256",
+            name: "contributionAmount",
+            type: "uint256",
+          },
+          { internalType: "address", name: "tokenAddress", type: "address" },
         ],
         internalType: "struct Factory.SystemInfo[]",
         name: "",
         type: "tuple[]",
       },
     ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "systemByCreatorAndName",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
@@ -82,6 +132,11 @@ export const factoryABI = [
     outputs: [
       { internalType: "address", name: "systemAddress", type: "address" },
       { internalType: "address", name: "creator", type: "address" },
+      { internalType: "string", name: "name", type: "string" },
+      { internalType: "uint256", name: "dayRange", type: "uint256" },
+      { internalType: "uint256", name: "expectedNumber", type: "uint256" },
+      { internalType: "uint256", name: "contributionAmount", type: "uint256" },
+      { internalType: "address", name: "tokenAddress", type: "address" },
     ],
     stateMutability: "view",
     type: "function",
@@ -98,7 +153,6 @@ export const Contribution_SystemABI = [
       { internalType: "uint256", name: "_dayRange", type: "uint256" },
       { internalType: "uint256", name: "_expectedNumber", type: "uint256" },
       { internalType: "uint256", name: "_contributionAmount", type: "uint256" },
-      { internalType: "address", name: "_tokenAddress", type: "address" },
       { internalType: "string", name: "_name", type: "string" },
     ],
     stateMutability: "nonpayable",
@@ -142,6 +196,20 @@ export const Contribution_SystemABI = [
     anonymous: false,
     inputs: [
       {
+        indexed: true,
+        internalType: "address",
+        name: "participant",
+        type: "address",
+      },
+      { indexed: false, internalType: "uint256", name: "id", type: "uint256" },
+    ],
+    name: "ParticipantJoined",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: false,
         internalType: "uint256",
         name: "segmentNumber",
@@ -173,10 +241,10 @@ export const Contribution_SystemABI = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
+    inputs: [],
     name: "deposit",
     outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "payable",
     type: "function",
   },
   {
@@ -211,7 +279,7 @@ export const Contribution_SystemABI = [
     inputs: [],
     name: "join",
     outputs: [],
-    stateMutability: "payable",
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -238,13 +306,6 @@ export const Contribution_SystemABI = [
       { internalType: "bool", name: "exists", type: "bool" },
       { internalType: "bool", name: "receivedFunds", type: "bool" },
     ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "tokenAddress",
-    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },

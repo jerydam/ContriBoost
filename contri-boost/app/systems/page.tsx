@@ -45,10 +45,7 @@ const Systems = () => {
                   />
                 </div>
                 <div className="">
-                  <Joined
-                    abi={Contribution_SystemABI}
-                    sysAddress={system.systemAddress}
-                  />
+                  <Joined sysAddress={system.systemAddress} />
                 </div>
               </div>
             );
